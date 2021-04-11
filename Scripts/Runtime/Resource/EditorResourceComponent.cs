@@ -291,6 +291,17 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 获取使用时下载的等待更新资源数量。
+        /// </summary>
+        public int UpdateWaitingWhilePlayingCount
+        {
+            get
+            {
+                throw new NotSupportedException("UpdateWaitingWhilePlayingCount");
+            }
+        }
+
+        /// <summary>
         /// 获取候选更新资源数量。
         /// </summary>
         public int UpdateCandidateCount
@@ -298,17 +309,6 @@ namespace UnityGameFramework.Runtime
             get
             {
                 throw new NotSupportedException("UpdateCandidateCount");
-            }
-        }
-
-        /// <summary>
-        /// 获取正在更新资源个数。
-        /// </summary>
-        public int UpdatingCount
-        {
-            get
-            {
-                throw new NotSupportedException("UpdatingCount");
             }
         }
 
@@ -518,6 +518,11 @@ namespace UnityGameFramework.Runtime
         /// 资源更新失败事件。
         /// </summary>
         public event EventHandler<GameFramework.Resource.ResourceUpdateFailureEventArgs> ResourceUpdateFailure = null;
+
+        /// <summary>
+        /// 资源更新全部完成事件。
+        /// </summary>
+        public event EventHandler<GameFramework.Resource.ResourceUpdateAllCompleteEventArgs> ResourceUpdateAllComplete = null;
 
 #pragma warning restore 0067, 0414
 
@@ -813,10 +818,10 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <param name="versionListLength">版本资源列表大小。</param>
         /// <param name="versionListHashCode">版本资源列表哈希值。</param>
-        /// <param name="versionListZipLength">版本资源列表压缩后大小。</param>
-        /// <param name="versionListZipHashCode">版本资源列表压缩后哈希值。</param>
+        /// <param name="versionListCompressedLength">版本资源列表压缩后大小。</param>
+        /// <param name="versionListCompressedHashCode">版本资源列表压缩后哈希值。</param>
         /// <param name="updateVersionListCallbacks">版本资源列表更新回调函数集。</param>
-        public void UpdateVersionList(int versionListLength, int versionListHashCode, int versionListZipLength, int versionListZipHashCode, UpdateVersionListCallbacks updateVersionListCallbacks)
+        public void UpdateVersionList(int versionListLength, int versionListHashCode, int versionListCompressedLength, int versionListCompressedHashCode, UpdateVersionListCallbacks updateVersionListCallbacks)
         {
             throw new NotSupportedException("UpdateVersionList");
         }
@@ -861,6 +866,14 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
+        /// 停止更新资源。
+        /// </summary>
+        public void StopUpdateResources()
+        {
+            throw new NotSupportedException("StopUpdateResources");
+        }
+
+        /// <summary>
         /// 校验资源包。
         /// </summary>
         /// <param name="resourcePackPath">要校验的资源包路径。</param>
@@ -868,6 +881,24 @@ namespace UnityGameFramework.Runtime
         public bool VerifyResourcePack(string resourcePackPath)
         {
             throw new NotSupportedException("VerifyResourcePack");
+        }
+
+        /// <summary>
+        /// 获取所有加载资源任务的信息。
+        /// </summary>
+        /// <returns>所有加载资源任务的信息。</returns>
+        public TaskInfo[] GetAllLoadAssetInfos()
+        {
+            throw new NotSupportedException("GetAllLoadAssetInfos");
+        }
+
+        /// <summary>
+        /// 获取所有加载资源任务的信息。
+        /// </summary>
+        /// <param name="results">所有加载资源任务的信息。</param>
+        public void GetAllLoadAssetInfos(List<TaskInfo> results)
+        {
+            throw new NotSupportedException("GetAllLoadAssetInfos");
         }
 
         /// <summary>
@@ -1477,12 +1508,41 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 获取所有加载资源任务的信息。
+        /// 获取所有资源组。
         /// </summary>
-        /// <returns>所有加载资源任务的信息。</returns>
-        public TaskInfo[] GetAllLoadAssetInfos()
+        /// <returns>所有资源组。</returns>
+        public IResourceGroup[] GetAllResourceGroups()
         {
-            throw new NotSupportedException("GetAllLoadAssetInfos");
+            throw new NotSupportedException("GetAllResourceGroups");
+        }
+
+        /// <summary>
+        /// 获取所有资源组。
+        /// </summary>
+        /// <param name="results">所有资源组。</param>
+        public void GetAllResourceGroups(List<IResourceGroup> results)
+        {
+            throw new NotSupportedException("GetAllResourceGroups");
+        }
+
+        /// <summary>
+        /// 获取资源组集合。
+        /// </summary>
+        /// <param name="resourceGroupNames">要获取的资源组名称的集合。</param>
+        /// <returns>要获取的资源组集合。</returns>
+        public IResourceGroupCollection GetResourceGroupCollection(params string[] resourceGroupNames)
+        {
+            throw new NotSupportedException("GetResourceGroupCollection");
+        }
+
+        /// <summary>
+        /// 获取资源组集合。
+        /// </summary>
+        /// <param name="resourceGroupNames">要获取的资源组名称的集合。</param>
+        /// <returns>要获取的资源组集合。</returns>
+        public IResourceGroupCollection GetResourceGroupCollection(List<string> resourceGroupNames)
+        {
+            throw new NotSupportedException("GetResourceGroupCollection");
         }
 
         private bool HasFile(string assetName)
